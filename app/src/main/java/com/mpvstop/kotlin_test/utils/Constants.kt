@@ -13,7 +13,7 @@ class Constants {
         val BASE_URL = "http://opn-interview-service.nn.r.appspot.com/"
 
         val Token =
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsImlkZW50aXR5IjoiYWJjIiwianRpIjoiMTJiMThhMTQtZTk4Ny00MDI3LWExMmYtZWY0YTM3NzJjYWM0IiwiaWF0IjoxNTk5MDM3MzA4LCJleHAiOjE1OTkwNDA5MDh9.NwvukgksZnIIGEbpFWGMGpOYTNMahiiWWAJSFp0mVEE"
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsImlkZW50aXR5IjoiYWJjIiwianRpIjoiNzY3OTczMTMtYzY4Ni00NzNmLWEzMWItMzYxZTA0ZGQxYjhhIiwiaWF0IjoxNTk5MDU0MzgxLCJleHAiOjE1OTk5MTgzODF9.D5JuMF8-9UU544F1X_um4-TFeX-hIwsQpGq04VDD4OM"
 //        val Token = getJwtToken()
     }
 
