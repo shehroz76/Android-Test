@@ -6,7 +6,6 @@ import javax.inject.Inject
 
 class UserDetailViewModel @Inject constructor(private val userDetailRepositry: UserDetailRepositry) : ViewModel() {
 
-    // by live-data adapter pattern
-    fun getUsers(page: String) = userDetailRepositry.getUserDetail(page);
+    fun getUserDetail(page: String) = userDetailRepositry.getUserDetail(page);
 
 }

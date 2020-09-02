@@ -3,12 +3,12 @@ package com.mpvstop.kotlin_test.ui.userfragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mpvstop.kotlin_test.R
@@ -22,8 +22,10 @@ import javax.inject.Inject
 class UsersFragment : BaseFragment<UserViewModel>() {
 
     private lateinit var viewModel: UserViewModel
+
     @Inject
     lateinit var useradater: UserAdapater
+
     @Inject
     lateinit var factory: ViewModelProvider.Factory
 
@@ -41,31 +43,35 @@ class UsersFragment : BaseFragment<UserViewModel>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-       initViews()
+        initViews()
     }
 
     private fun initViews() {
         initRecylerView()
-        subscribeObservers()
+        getUsersList()
+        tvReload.setOnClickListener {
+            getUsersList()
+        }
     }
 
-    private fun subscribeObservers() {
+    private fun getUsersList() {
         // by live data adapter pattern
         viewModel.getUsers().observe(viewLifecycleOwner, Observer {
             consumeResponseLiveData(it)
         })
+
     }
 
     private fun consumeResponseLiveData(response: Resource<Users>) {
         when (response.status) {
-            Status.LOADING -> showProgressDialog()
+            Status.LOADING -> layoutVisibilities(GONE, VISIBLE, GONE)
             Status.SUCCESS -> {
-                hideProgressDialog()
+                layoutVisibilities(VISIBLE, GONE, GONE)
                 renderSuccessResponse(response.data)
             }
             Status.ERROR -> {
-                hideProgressDialog()
-                Toast.makeText(activity, "nertwork error", Toast.LENGTH_SHORT).show()
+                layoutVisibilities(GONE, VISIBLE, VISIBLE)
+                tvErrorMessage.setText(response.message)
             }
             else -> {
             }
@@ -74,8 +80,18 @@ class UsersFragment : BaseFragment<UserViewModel>() {
 
     private fun renderSuccessResponse(response: Users?) {
         response.let {
-                response?.data?.let { it -> useradater.setUserList(it) }
+            response?.data?.let { it -> useradater.setUserList(it) }
         }
+    }
+
+    private fun layoutVisibilities(
+        rvUserVibility: Int,
+        tvErrorMessageVisibility: Int,
+        tvReloadVisibility: Int
+    ) {
+        rvUsers.visibility = rvUserVibility
+        tvErrorMessage.visibility = tvErrorMessageVisibility
+        tvReload.visibility = tvReloadVisibility
     }
 
     private fun initRecylerView() {
@@ -83,14 +99,6 @@ class UsersFragment : BaseFragment<UserViewModel>() {
         rvUsers.setAdapter(useradater)
     }
 
-    fun navigateToUserDetail(id:String){
-//        Navigation.findNavController(requireView())
-//            .navigate(
-//                UsersFragmentDirections.actionUserDetailFragment(
-//                    id
-//                )
-//            )
-    }
 
     override fun getViewModel(): UserViewModel {
         viewModel = ViewModelProviders.of(this, factory).get(UserViewModel::class.java)

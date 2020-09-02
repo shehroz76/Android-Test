@@ -6,6 +6,7 @@ import com.mpvstop.kotlin_test.ui.userfragment.models.Users
 import com.mpvstop.kotlin_test.utils.ApiResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -14,9 +15,6 @@ interface ApiService {
     fun getUsers(): LiveData<ApiResponse<Users>>
 
     @GET("/get/{id}")
-    fun getUser(@Query("id") apikey: String): LiveData<ApiResponse<UserDetail>>
-
-//    @GET("api/users")
-//    fun fetchUser(@Query("page") page: String): LiveData<ApiResponse<UserList>>
+    fun getUser(@Path("id") apikey: String): LiveData<ApiResponse<UserDetail>>
 
 }

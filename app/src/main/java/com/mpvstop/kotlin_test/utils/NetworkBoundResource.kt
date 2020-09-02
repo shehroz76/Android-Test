@@ -5,6 +5,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import com.mpvstop.kotlin_test.utils.*
+import com.mpvstop.kotlin_test.utils.Utils.Companion.getErrorMessage
 
 abstract class NetworkBoundResource<ResultType>
 @MainThread constructor(private val appExecutors: AppExecutors) {
@@ -43,7 +44,7 @@ abstract class NetworkBoundResource<ResultType>
                 }
                 is ApiErrorResponse -> {
                     onFetchFailed()
-                    setValue(Resource.error("empty data", null))
+                    setValue(Resource.error(getErrorMessage(response.errorCode), null))
                 }
             }
         }

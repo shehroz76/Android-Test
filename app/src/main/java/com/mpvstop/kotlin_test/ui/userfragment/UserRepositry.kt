@@ -12,7 +12,7 @@ import com.mpvstop.kotlin_test.utils.Resource
 import javax.inject.Inject
 
 class UserRepositry @Inject constructor(
-    private val context: Context, private val apiService: ApiService,
+    private val apiService: ApiService,
     private val appExecutors: AppExecutors
 ) {
 

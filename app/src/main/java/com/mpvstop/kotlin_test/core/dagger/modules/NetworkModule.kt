@@ -26,7 +26,7 @@ class NetworkModule {
         lateinit var httpClient: OkHttpClient
 //            val token = BaseActivity.getToken()
 //        val token = App.getToken()
-        val token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjEsImlkZW50aXR5IjoiYWJjIiwianRpIjoiYTc4ZTE4YWYtOTJkYy00ZWY5LWIzMDMtOTBkZTA0NGIyYmRiIiwiaWF0IjoxNTk4OTc4NDEwLCJleHAiOjE1OTg5ODIwMTB9.Vt821o7kzsrnRARv7Huxxg72PlXNhVU8Iyuwaj7FW8E"
+        val token = Constants.Token
         var finalToken = ""
 
         if (!TextUtils.isEmpty(token)) {

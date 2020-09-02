@@ -1,11 +1,8 @@
 package com.mpvstop.kotlin_test.core.dagger.modules
 
 import android.content.Context
-import androidx.room.Room
 import com.google.gson.Gson
 import com.mpvstop.kotlin_test.core.app.App
-import com.mpvstop.kotlin_test.core.dbase.UserDao
-import com.mpvstop.kotlin_test.core.dbase.appDatabase
 import com.mpvstop.kotlin_test.core.store.mainstore.MainAppStore
 import com.mpvstop.kotlin_test.core.store.offline.OfflineStore
 import com.mpvstop.kotlin_test.core.store.online.OnlineStore
