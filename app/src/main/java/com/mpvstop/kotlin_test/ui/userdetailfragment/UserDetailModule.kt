@@ -15,7 +15,6 @@ class UserDetailModule {
 
     @Provides
     fun provideViewModel(
-        context: Context,
         userDetailRepositry: UserDetailRepositry
     ): UserDetailViewModel {
         return UserDetailViewModel(
@@ -25,12 +24,10 @@ class UserDetailModule {
 
     @Provides
     fun provideUserRepositry(
-        context: Context,
         apiService: ApiService,
         appExecutors: AppExecutors
     ): UserDetailRepositry {
         return UserDetailRepositry(
-            context,
             apiService,
             appExecutors
         )

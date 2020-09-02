@@ -69,8 +69,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation files('E:\\Android\\WorkSpace\\Kotlin-test\\lib\\nimbus-jose-jwt-8.20.jar')
-    implementation files('E:\\Android\\WorkSpace\\Kotlin-test\\lib\\jose4j-0.7.2.jar')
+//    implementation files('E:\\Android\\WorkSpace\\Kotlin-test\\lib\\nimbus-jose-jwt-8.20.jar')
+//    implementation files('E:\\Android\\WorkSpace\\Kotlin-test\\lib\\jose4j-0.7.2.jar')
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'io.jsonwebtoken:jjwt:0.7.0'
     testImplementation 'junit:junit:4.12'

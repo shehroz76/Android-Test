@@ -3,7 +3,6 @@ package com.kotlinmvvm.app.utils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.annotation.MainThread
-import androidx.annotation.WorkerThread
 import com.mpvstop.kotlin_test.utils.*
 import com.mpvstop.kotlin_test.utils.Utils.Companion.getErrorMessage
 

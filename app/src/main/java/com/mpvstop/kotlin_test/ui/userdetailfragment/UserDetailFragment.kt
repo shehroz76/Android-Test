@@ -51,7 +51,6 @@ class UserDetailFragment : BaseFragment<UserDetailViewModel>() {
     }
 
     private fun subscribeObservers() {
-        // by live data adapter pattern
         viewModel.getUserDetail(fromBundle(requireArguments()).userId)
             .observe(viewLifecycleOwner, Observer {
                 consumeResponseLiveData(it)

@@ -4,9 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.mpvstop.kotlin_test.NavigationGraphDirections
 import com.mpvstop.kotlin_test.R
 import kotlinx.android.synthetic.main.adp_user_item.view.*
 import javax.inject.Inject
@@ -34,10 +34,6 @@ constructor(
         return userList!!.size
     }
 
-    fun getUserList(): List<String?> {
-        return userList
-    }
-
     fun setUserList(userList: List<String?>) {
         this.userList = userList as ArrayList<String>
         notifyDataSetChanged()
@@ -50,7 +46,7 @@ constructor(
             itemView.setOnClickListener {
                 Navigation.findNavController(itemView)
                     .navigate(
-                        UsersFragmentDirections.actionUserDetailFragment(
+                        NavigationGraphDirections.actionUserDetailFragment(
                             userList.get(adapterPosition)
                         )
                     )

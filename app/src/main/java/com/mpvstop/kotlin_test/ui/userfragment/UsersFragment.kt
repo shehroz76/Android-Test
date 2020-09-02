@@ -55,7 +55,6 @@ class UsersFragment : BaseFragment<UserViewModel>() {
     }
 
     private fun getUsersList() {
-        // by live data adapter pattern
         viewModel.getUsers().observe(viewLifecycleOwner, Observer {
             consumeResponseLiveData(it)
         })

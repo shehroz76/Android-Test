@@ -12,7 +12,7 @@ import dagger.Provides
 class UserListModule {
 
     @Provides
-    fun provideViewModel(context: Context, userRepositry: UserRepositry): UserViewModel {
+    fun provideViewModel(userRepositry: UserRepositry): UserViewModel {
         return UserViewModel(
             userRepositry
         )
