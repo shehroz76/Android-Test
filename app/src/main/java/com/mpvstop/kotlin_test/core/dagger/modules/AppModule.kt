@@ -52,8 +52,8 @@ class AppModule {
 //
 //    @Singleton
 //    @Provides
-//    fun provideUserDao(db: appDatabase): UserDao {
-//        return db.userDao()
+//    fun providePassengerDao(db: appDatabase): PassengerDao {
+//        return db.passengerDao()
 //    }
 
 

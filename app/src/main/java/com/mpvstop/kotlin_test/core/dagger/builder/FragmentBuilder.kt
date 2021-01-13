@@ -1,21 +1,21 @@
 package com.mpvstop.kotlin_test.core.dagger.builder
 
 import com.mpvstop.kotlin_test.ui.activities.MainActivity
-import com.mpvstop.kotlin_test.ui.userdetailfragment.UserDetailFragment
-import com.mpvstop.kotlin_test.ui.userdetailfragment.UserDetailModule
-import com.mpvstop.kotlin_test.ui.userfragment.UserListModule
-import com.mpvstop.kotlin_test.ui.userfragment.UsersFragment
+import com.mpvstop.kotlin_test.ui.passengerdetailfragment.PassengersDetailFragment
+import com.mpvstop.kotlin_test.ui.passengerdetailfragment.PassengerDetailModule
+import com.mpvstop.kotlin_test.ui.passengersfragment.PassengersListModule
+import com.mpvstop.kotlin_test.ui.passengersfragment.PassengersFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class FragmentBuilder {
 
-    @ContributesAndroidInjector(modules = [UserListModule::class])
-    abstract fun provideUsersFragment(): UsersFragment
+    @ContributesAndroidInjector(modules = [PassengersListModule::class])
+    abstract fun providePassengersFragment(): PassengersFragment
 
-    @ContributesAndroidInjector(modules = [UserDetailModule::class])
-    abstract fun provideUserDetailFragment(): UserDetailFragment
+    @ContributesAndroidInjector(modules = [PassengerDetailModule::class])
+    abstract fun providePassengersDetailFragment(): PassengersDetailFragment
 
     @ContributesAndroidInjector
     abstract fun provideMainActivity(): MainActivity

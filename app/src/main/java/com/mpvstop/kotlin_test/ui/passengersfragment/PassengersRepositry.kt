@@ -1,25 +1,23 @@
-package com.mpvstop.kotlin_test.ui.userfragment
+package com.mpvstop.kotlin_test.ui.passengersfragment
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import com.kotlinmvvm.app.utils.NetworkBoundResource
-import com.mpvstop.kotlin_test.core.dbase.UserDao
 import com.mpvstop.kotlin_test.core.store.online.ApiService
-import com.mpvstop.kotlin_test.ui.userfragment.models.Users
+import com.mpvstop.kotlin_test.ui.passengersfragment.models.PassengersResonse
 import com.mpvstop.kotlin_test.utils.ApiResponse
 import com.mpvstop.kotlin_test.utils.AppExecutors
 import com.mpvstop.kotlin_test.utils.Resource
 import javax.inject.Inject
 
-class UserRepositry @Inject constructor(
+class PassengersRepositry @Inject constructor(
     private val apiService: ApiService,
     private val appExecutors: AppExecutors
 ) {
 
-    fun getUsers(): LiveData<Resource<Users>> {
-        return object : NetworkBoundResource<Users>(appExecutors) {
+    fun getPassngers(): LiveData<Resource<PassengersResonse>> {
+        return object : NetworkBoundResource<PassengersResonse>(appExecutors) {
 
-            override fun createCall(): LiveData<ApiResponse<Users>> = apiService.getUsers()
+            override fun createCall(): LiveData<ApiResponse<PassengersResonse>> = apiService.getPassngers(1,10)
 
         }.asLiveData()
     }

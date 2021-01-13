@@ -1,23 +1,20 @@
-package com.mpvstop.kotlin_test.ui.userdetailfragment
+package com.mpvstop.kotlin_test.ui.passengerdetailfragment
 
-import android.content.Context
-import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.mpvstop.kotlin_test.core.store.online.ApiService
 import com.mpvstop.kotlin_test.utils.AppExecutors
 import com.mpvstop.kotlin_test.utils.ViewModelProviderFactory
 import dagger.Module
 import dagger.Provides
-import java.util.ArrayList
 
 @Module
-class UserDetailModule {
+class PassengerDetailModule {
 
     @Provides
     fun provideViewModel(
-        userDetailRepositry: UserDetailRepositry
-    ): UserDetailViewModel {
-        return UserDetailViewModel(
+        userDetailRepositry: PassengerDetailRepositry
+    ): PassengerDetailViewModel {
+        return PassengerDetailViewModel(
             userDetailRepositry
         )
     }
@@ -26,15 +23,15 @@ class UserDetailModule {
     fun provideUserRepositry(
         apiService: ApiService,
         appExecutors: AppExecutors
-    ): UserDetailRepositry {
-        return UserDetailRepositry(
+    ): PassengerDetailRepositry {
+        return PassengerDetailRepositry(
             apiService,
             appExecutors
         )
     }
 
     @Provides
-    fun provideViewModelProvider(viewModel: UserDetailViewModel): ViewModelProvider.Factory {
+    fun provideViewModelProvider(viewModel: PassengerDetailViewModel): ViewModelProvider.Factory {
         return ViewModelProviderFactory(viewModel)
     }
 

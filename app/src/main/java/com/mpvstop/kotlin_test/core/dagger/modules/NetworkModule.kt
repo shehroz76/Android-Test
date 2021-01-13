@@ -24,21 +24,12 @@ class NetworkModule {
     @Provides
     internal fun providesClient(): OkHttpClient {
         lateinit var httpClient: OkHttpClient
-//            val token = BaseActivity.getToken()
-//        val token = App.getToken()
-        val token = Constants.Token
-        var finalToken = ""
-
-        if (!TextUtils.isEmpty(token)) {
-            finalToken = "Bearer $token"
-        }
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
 
 
         val interceptor = Interceptor { chain ->
             val request = chain.request().newBuilder()
-                .header("Authorization", finalToken)
                 .header("accept", "application/json")
                 .build()
 
@@ -68,13 +59,11 @@ class NetworkModule {
 
 //        for call with live-data-adater
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(Constants.BASEURL)
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .client(providesClient())
             .build()
-
-
     }
 
     @Singleton

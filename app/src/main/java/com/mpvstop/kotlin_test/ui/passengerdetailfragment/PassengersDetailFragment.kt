@@ -1,4 +1,4 @@
-package com.mpvstop.kotlin_test.ui.userdetailfragment
+package com.mpvstop.kotlin_test.ui.passengerdetailfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,21 +10,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.mpvstop.kotlin_test.R
 import com.mpvstop.kotlin_test.core.base.BaseFragment
-import com.mpvstop.kotlin_test.ui.userdetailfragment.UserDetailFragmentArgs.fromBundle
-import com.mpvstop.kotlin_test.ui.userdetailfragment.models.Data
-import com.mpvstop.kotlin_test.ui.userdetailfragment.models.UserDetail
-import com.mpvstop.kotlin_test.ui.userfragment.UserAdapater
+import com.mpvstop.kotlin_test.ui.passengerdetailfragment.PassengersDetailFragmentArgs.fromBundle
+import com.mpvstop.kotlin_test.ui.passengersfragment.PassengersAdapater
+import com.mpvstop.kotlin_test.ui.passengersfragment.models.PassengerItem
 import com.mpvstop.kotlin_test.utils.Resource
 import com.mpvstop.kotlin_test.utils.Status
-import kotlinx.android.synthetic.main.fragment_user_detail.*
+import kotlinx.android.synthetic.main.fragment_passenger_detail.*
 import javax.inject.Inject
 
-class UserDetailFragment : BaseFragment<UserDetailViewModel>() {
+class PassengersDetailFragment : BaseFragment<PassengerDetailViewModel>() {
 
-    private lateinit var viewModel: UserDetailViewModel
+    private lateinit var viewModel: PassengerDetailViewModel
 
     @Inject
-    lateinit var useradater: UserAdapater
+    lateinit var useradater: PassengersAdapater
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -38,7 +37,7 @@ class UserDetailFragment : BaseFragment<UserDetailViewModel>() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_detail, container, false)
+        return inflater.inflate(R.layout.fragment_passenger_detail, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -51,13 +50,13 @@ class UserDetailFragment : BaseFragment<UserDetailViewModel>() {
     }
 
     private fun subscribeObservers() {
-        viewModel.getUserDetail(fromBundle(requireArguments()).userId)
+        viewModel.getPassengerById(fromBundle(requireArguments()).passengerId)
             .observe(viewLifecycleOwner, Observer {
                 consumeResponseLiveData(it)
             })
     }
 
-    private fun consumeResponseLiveData(response: Resource<UserDetail>) {
+    private fun consumeResponseLiveData(response: Resource<PassengerItem>) {
         when (response.status) {
             Status.LOADING -> showProgressDialog()
             Status.SUCCESS -> {
@@ -73,22 +72,19 @@ class UserDetailFragment : BaseFragment<UserDetailViewModel>() {
         }
     }
 
-    private fun renderSuccessResponse(response: UserDetail?) {
+    private fun renderSuccessResponse(response: PassengerItem?) {
         response.let {
-            response?.data?.let { it -> updateUi(it) }
+            updateUi(it)
         }
     }
 
-    private fun updateUi(data: Data) {
-        firstName.setText(data.firstName)
-        lastName.setText(data.lastName)
-        age.setText(data.age.toString())
-        gender.setText(data.gender)
-        country.setText(data.country)
+    private fun updateUi(data: PassengerItem?) {
+        name.setText(data?.name)
+        flight.setText(data?.airline?.name)
     }
 
-    override fun getViewModel(): UserDetailViewModel {
-        viewModel = ViewModelProviders.of(this, factory).get(UserDetailViewModel::class.java)
+    override fun getViewModel(): PassengerDetailViewModel {
+        viewModel = ViewModelProviders.of(this, factory).get(PassengerDetailViewModel::class.java)
         return viewModel
     }
 }
