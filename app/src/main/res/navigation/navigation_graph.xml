@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/user_fragment"
-        android:label="Passengers"
-        android:name="com.mpvstop.kotlin_test.ui.passengersfragment.PassengersFragment"
+        android:label="Users"
+        android:name="com.mpvstop.kotlin_test.ui.usersfragment.UsersFragment"
         tools:layout="@layout/fragment_passengers">
 
 
@@ -27,11 +27,11 @@
 
     <fragment
         android:id="@+id/user_passenger_fragment"
-        android:name="com.mpvstop.kotlin_test.ui.passengerdetailfragment.PassengersDetailFragment"
-        android:label="Passenger Detail"
+        android:name="com.mpvstop.kotlin_test.ui.userdetailfragment.UsersDetailFragment"
+        android:label="User Detail"
         tools:layout="@layout/fragment_passenger_detail">
         <argument
-            android:name="passengerId"
+            android:name="userName"
             app:argType="string" />
     </fragment>
 

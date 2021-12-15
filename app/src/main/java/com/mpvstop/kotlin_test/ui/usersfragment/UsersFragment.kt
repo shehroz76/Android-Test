@@ -1,4 +1,4 @@
-package com.mpvstop.kotlin_test.ui.passengersfragment
+package com.mpvstop.kotlin_test.ui.usersfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,18 +13,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mpvstop.kotlin_test.R
 import com.mpvstop.kotlin_test.core.base.BaseFragment
-import com.mpvstop.kotlin_test.ui.passengersfragment.models.PassengersResonse
+import com.mpvstop.kotlin_test.ui.usersfragment.models.UsersResponse
 import com.mpvstop.kotlin_test.utils.Resource
 import com.mpvstop.kotlin_test.utils.Status
 import kotlinx.android.synthetic.main.fragment_passengers.*
 import javax.inject.Inject
 
-class PassengersFragment : BaseFragment<PassengersViewModel>() {
+class UsersFragment : BaseFragment<UsersViewModel>() {
 
-    private lateinit var viewModel: PassengersViewModel
+    private lateinit var viewModel: UsersViewModel
 
     @Inject
-    lateinit var useradater: PassengersAdapater
+    lateinit var useradater: UsersAdapater
 
     @Inject
     lateinit var factory: ViewModelProvider.Factory
@@ -61,7 +61,7 @@ class PassengersFragment : BaseFragment<PassengersViewModel>() {
 
     }
 
-    private fun consumeResponseLiveData(response: Resource<PassengersResonse>) {
+    private fun consumeResponseLiveData(response: Resource<UsersResponse>) {
         when (response.status) {
             Status.LOADING -> layoutVisibilities(GONE, VISIBLE, GONE)
             Status.SUCCESS -> {
@@ -77,9 +77,9 @@ class PassengersFragment : BaseFragment<PassengersViewModel>() {
         }
     }
 
-    private fun renderSuccessResponse(response: PassengersResonse?) {
+    private fun renderSuccessResponse(response: UsersResponse?) {
         response.let {
-            response?.data?.let { it -> useradater.setUserList(it) }
+            response?.results?.let { it -> useradater.setUserList(it) }
         }
     }
 
@@ -99,8 +99,8 @@ class PassengersFragment : BaseFragment<PassengersViewModel>() {
     }
 
 
-    override fun getViewModel(): PassengersViewModel {
-        viewModel = ViewModelProviders.of(this, factory).get(PassengersViewModel::class.java)
+    override fun getViewModel(): UsersViewModel {
+        viewModel = ViewModelProviders.of(this, factory).get(UsersViewModel::class.java)
         return viewModel
     }
 }

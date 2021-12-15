@@ -1,4 +1,4 @@
-package com.mpvstop.kotlin_test.ui.passengersfragment
+package com.mpvstop.kotlin_test.ui.usersfragment
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,15 +8,15 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mpvstop.kotlin_test.NavigationGraphDirections
 import com.mpvstop.kotlin_test.R
-import com.mpvstop.kotlin_test.ui.passengersfragment.models.PassengerItem
+import com.mpvstop.kotlin_test.ui.usersfragment.models.ResultsItem
 import kotlinx.android.synthetic.main.adp_passenger_item.view.*
 import javax.inject.Inject
 
-class PassengersAdapater @Inject
+class UsersAdapater @Inject
 constructor(
     private val context: Context
-) : RecyclerView.Adapter<PassengersAdapater.CategoryViewHolder>() {
-    private var userList = ArrayList<PassengerItem>()
+) : RecyclerView.Adapter<UsersAdapater.CategoryViewHolder>() {
+    private var userList = ArrayList<ResultsItem>()
     private var layoutInflater: LayoutInflater? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): CategoryViewHolder {
@@ -35,8 +35,8 @@ constructor(
         return userList!!.size
     }
 
-    fun setUserList(userList: List<PassengerItem?>) {
-        this.userList = userList as ArrayList<PassengerItem>
+    fun setUserList(userList: List<ResultsItem?>) {
+        this.userList = userList as ArrayList<ResultsItem>
         notifyDataSetChanged()
     }
 
@@ -45,16 +45,12 @@ constructor(
 
         init {
             itemView.setOnClickListener {
-//                Navigation.findNavController(itemView)
-//                    .navigate(
-//                        NavigationGraphDirections.actionUserDetailFragment(
-//                            userList?.get(adapterPosition)
-//                        )
-//                    )
-                userList?.get(adapterPosition)._id?.let { it1 ->
-                    NavigationGraphDirections.actionPassengerDetailFragment(
-                        it1
-                    )
+                userList?.get(adapterPosition).name?.first.let { it1 ->
+                    it1?.let { it2 ->
+                        NavigationGraphDirections.actionPassengerDetailFragment(
+                            it2
+                        )
+                    }
                 }?.let { it2 ->
                     Navigation.findNavController(itemView)
                         .navigate(
@@ -64,8 +60,8 @@ constructor(
             }
         }
 
-        fun bindForecast(data: PassengerItem?) {
-            itemView.user_name.text = data?.name
+        fun bindForecast(data: ResultsItem) {
+            itemView.user_name.text = "${data?.name?.first} ${data?.name?.last}"
         }
     }
 

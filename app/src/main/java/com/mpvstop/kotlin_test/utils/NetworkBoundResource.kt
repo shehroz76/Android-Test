@@ -48,7 +48,6 @@ abstract class NetworkBoundResource<ResultType>
             }
         }
     }
-
     protected open fun onFetchFailed() {
 
     }

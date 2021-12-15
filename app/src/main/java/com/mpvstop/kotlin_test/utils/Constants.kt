@@ -10,7 +10,8 @@ class Constants {
         val LOGGED_IN = "LoggedIn"
 
         //Network
-        val BASEURL = "https://api.instantwebtools.net/v1/"
+//        val BASEURL = "https://api.instantwebtools.net/v1/"
+        val BASEURL = "https://randomuser.me/"
 
     }
 
